@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html class="no-js">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'breath_app/css/serenity.css' %}">
+  <title>Dashboard2</title>
+</head>
+
+<body>
+  <div class='container'>
+    <p class="hello">Hello {{logged_in_user.first_name}}!</p>
+
+    <p class="trips">Everyone's jobs!!</p>
+
+    <form name="loginForm" method="post" action="placeholder"">
+                {% csrf_token %}
+                <a class=" logout" href="/logout">Logout</a>
+    </form>
+    <a class="createbutton" href="/job">Create new job!</a>
+    <div class="table_one">
+      <table>
+        <thead>
+          <tr>
+            <th>Job</th>
+            <th>Description</th>
+            <th>Location</th>
+            <th>Actions</th>
+            <th>Actions</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          {% for job in all_jobs %}
+          <tr>
+            <td>{{ job.title }}</td>
+            <td>{{ job.description }}</td>
+            <td> {{ job.location }}</td>
+            <td><a href="/read/{{ job.id }}">view</a></td>
+            {% if request.session.user_id == job.posted_by.id %}
+            <td><a href="/delete_job/{{ job.id }}">Remove</a></td>
+            <td><a href="/edit_job/{{job.id}}">Edit</a></td>
+            {% endif %}
+          </tr>
+          {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+
+    <br>
+
+
+
+    <div class="logout">
+    </div>
+
+    <div class="footer">
+      <h6>Coding Dojo 2019</h6>
+    </div>
+
+
+  </div>
+
+
+</body>
+
+
+</html>
