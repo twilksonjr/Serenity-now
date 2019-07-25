@@ -1,5 +1,5 @@
 """
-WSGI config for stop_stress project.
+WSGI config for serenity_now project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "stop_stress.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "serenity_now.settings")
 
 application = get_wsgi_application()

@@ -16,5 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 
 urlpatterns = [
+    url(r'^serenity_now/', include('apps.game_app.urls')),	# use your app_name here
+    url(r'^serenity_store/', include('apps.store_app.urls')),	# use your app_name here
     url(r'^', include('apps.breath_app.urls')),
 ]

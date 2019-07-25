@@ -16,7 +16,7 @@ class LoginManager(models.Manager):
             errors["last_name"] = "Last name should be at least 2 characters"
         if not re.match(email_regex, postData['email']):
             errors["email"] = "email must be valid"
-        email_check = Users.objects.filter(email=postData['email'])
+        email_check = User.objects.filter(email=postData['email'])
         if len(email_check):
             errors['email'] = "Email is already registered"
         if len(postData["password"]) < 8:
@@ -29,7 +29,7 @@ class LoginManager(models.Manager):
         errors = {}
         passwordFromForm = postData['login_password']
         email = postData['login_email']
-        usersWithThatEmail = Users.objects.filter(email=email)
+        usersWithThatEmail = User.objects.filter(email=email)
         if len(usersWithThatEmail) == 0:
             errors['log_email'] = "email not found"
         # if the login information is correct:
@@ -54,7 +54,7 @@ class EventManager(models.Manager):
         return errors
 
 
-class Users(models.Model):
+class User(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
