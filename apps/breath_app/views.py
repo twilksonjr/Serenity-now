@@ -55,3 +55,5 @@ def Login(request):
 def Logout(request):
     request.session.clear()
     return redirect('/')
+
+# 1234
