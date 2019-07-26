@@ -1,72 +1,105 @@
 <!DOCTYPE html>
 
+
+
 <html class="no-js">
 
+
+
 <head>
+
   <meta charset="utf-8">
+
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
   <meta name="description" content="">
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>serenity</title>
+
+  <title>SerenityStay in Game</title>
+
   {% load static %}
+
   <link rel="stylesheet" href="{% static 'game_app/css/serenity.css' %}">
+
   <style>
+
+
 
   </style>
 
 </head>
 
-<body>
-  <div class="container">
+  <body>
 
+    <div class="container">
+      <p class="bstress">Beginning Stress level {{begin_stress}}</p>
+      <p class="estress">Ending Stress level {{end_stress}}</p>
 
-    <p class="bstress">Beginning Stress level {{placeholder}}</p>
-
-    <p class="estress">Ending Stress level {{placeholder}}</p>
-    <br>
-
-
-    <div class="rate">
-      <p class="scale">Rate your current stress level: 0 = No Stress / 10 = So stressed you can't talk</p>
-      <p class="slider">Drag the slider to display your stress level value</p>
-      <p class="value">Current stress level: <span id="demo"></span></p>
-      <div class="rangeslider">
-        <form class="serenity" action="/serenity_store/" method="post">
-          {% csrf_token %}
-          <input type="range" min="1" max="10" value="1" class="myslider" id="sliderRange" name="range">
+      <br>
 
 
 
-          <input class="submit_btn" type="submit" value="submit">
-        </form>
+
+
+      <!-- <div class="rate">
+
+        <p class="scale">Rate your current stress level: 0 = No Stress / 10 = So stressed you can't talk</p>
+        <p class="slider">Drag the slider to display your stress level value</p>
+        <p class="value">Current stress level: <span id="demo"></span></p> -->
+
+        <!-- <div class="rangeslider">
+
+          <div class="stress">
+            <p class="level">1 = Not at all</p>
+            <p class="level">3 = Slightly</p>
+            <p class="level">5 = Getting irritated </p>
+            <p class="level">8 = Starting to loose it</p>
+            <p class="level">10 = Have totally lost it</p>
+          </div> -->
+
+            
+            <div class="rate">
+                <p class="scale">Rate your current stress level: 0 = No Stress / 10 = So stressed you can't
+                    talk
+                </p>
+                <p class="slider">Drag the slider to display your stress level value</p>
+                <div class="rangeslider">
+                  <p class="value">Current Stress Level: <span id="demo"></span></p>
+
+                  <div class="stress">
+                    <p class="level">1 = Not at all</p>
+                    <p class="level">3 = Slightly</p>
+                    <p class="level">5 = Getting irritated </p>
+                    <p class="level">8 = Starting to loose it</p>
+                    <p class="level">10 = Have totally lost it</p>
+                  </div>
+        
+                <div class="rangeslider">
+                    <form class="serenity" action="processSerenityStay" method="POST">
+                        {% csrf_token %}
+                        <!-- <textarea rows = "6" columns = "50" name="journal"></textarea> -->
+                        <input type="range" min="1" max="10" value="1" class="myslider" id="sliderRange"
+                            name="end_range">
+                        <!-- <input class="submit_btn" type="submit" value="submit"> -->
+            <!-- <input type="range" min="1" max="10" value="1" class="myslider" id="sliderRange" name="range"> -->
+                      <input class="submit_btn" type="submit" value="submit">
+                    </form>
+                </div>
+          </div>
+
       </div>
-    </div>
-
-
-    <div class="ratings">
-
-      <p class="breath">Breath Count:{{placeholder}}</p>
-      <p class="gratitude">Gratitude list:{{placeholder}}</p>
-      <p class="journal">Journal Entry:{{placeholder}}</p>
-      <p class="activity">Activity list:{{placeholder}}</p>
 
 
 
 
 
-    </div>
-
-
-
-    <script>
-      var rangeslider = document.getElementById("sliderRange");
-      var output = document.getElementById("demo");
-      output.innerHTML = rangeslider.value;
-
-      rangeslider.oninput = function () {
-        output.innerHTML = this.value;
-      }
-    </script>
+        <div class="ratings">
+          <p class="breath">Breath Count:{{breath_count}}</p>
+          <p class="gratitude">Gratitude list:{{grat_list}}</p>
+          <p class="journal">Journal Entry(triggering event):{{journal}}</p>
+          <p class="activity">Activity list(immediate action steps):{{act_list}}</p>
+        </div>
 
 
 
@@ -74,11 +107,26 @@
 
 
 
+      <script>
+
+        var rangeslider = document.getElementById("sliderRange");
+
+        var output = document.getElementById("demo");
+
+        output.innerHTML = rangeslider.value;
 
 
-  </div>
 
-</body>
+        rangeslider.oninput = function () {
 
+          output.innerHTML = this.value;
+
+        }
+
+      </script>
+
+    <!-- </div> -->
+
+  </body>
 
 </html>

@@ -1,0 +1,104 @@
+body {
+  background-image: url('bamboo.jpg') !important;
+  height: 970px;
+  width: 970px;
+  background: cover;
+  overflow-y: hidden;
+}
+
+.container {
+  width: 1400px;
+  height: 970px;
+  display: inline-block;
+}
+
+.go_back {
+  display: inline-block;
+  font-size: 18px;
+  margin-left: 279px;
+  margin-top: -48px;
+  position: absolute;
+  width: 80px;
+  text-align: center;
+  border: 1px solid white;
+}
+
+.intro {
+  color: white;
+  font-size: 44px;
+  display: inline;
+  margin-left: 285px;
+  position: absolute;
+  margin-top: 59px;
+  font-size: 44px;
+  display: inline;
+  margin-left: 285px;
+  position: absolute;
+  text-shadow: 3px 2px black;
+
+
+}
+
+.title {
+  color: white;
+  font-size: 44px;
+  display: inline;
+  margin-left: 285px;
+  position: absolute;
+  margin-top: 128px;
+  font-size: 43px;
+  display: inline-block;
+  margin-left: 498px;
+  text-shadow: 3px 2px black;
+
+}
+
+.click {
+  font-size: 18px;
+  display: inline-block;
+  margin-left: 608px;
+  margin-top: 207px;
+  color: black;
+  font-color: black;
+  border-radius: 5px;
+  background-color: orange;
+  border: 1px solid black
+}
+
+.craving {
+  color: white;
+  font-size: 44px;
+  display: inline;
+  margin-left: 285px;
+  font-size: 43px;
+  margin-top: 352px;
+  margin-left: -296px;
+  position: absolute;
+  text-shadow: 3px 2px black;
+}
+
+.taste {
+  margin-left: 502px;
+  margin-top: 160px;
+}
+
+.dropdown {
+  word-wrap: normal;
+  margin-left: 612px;
+  font-size: 18px;
+  display: inline-block;
+  margin-top: 20px;
+  color: white;
+  text-shadow: 3px 2px black;
+}
+
+.submit_btn {
+  font-size: 24px;
+  background-color: orange;
+  margin-left: 124px;
+  margin-top: -85px;
+  position: absolute;
+  display: inline-block;
+  border-radius: 8px;
+
+}

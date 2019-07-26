@@ -1,94 +1,99 @@
 <!DOCTYPE html>
-<html lang ="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Serenity Now Dashboard Welcome Page</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-{% load static %}
-<link rel="stylesheet" href="{% static 'game_app/css/style.css' %}">    
-<!-- <script src="{% static 'game_app/js/script.js' %}"></script> -->
- <!-- <img src="{% static 'game_app/images/ocean_sunset.jpg' %}" /> -->
-<!-- adding another comment -->
+<html lang="en">
 
- <style>
-    table {
-      border-collapse: collapse;
-    }
-    
-    table, td, th {
-      border: 1px solid black;
-    }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Serenity Now Dashboard Welcome Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'game_app/css/dashboard.css' %}">
+    <!-- <script src="{% static 'game_app/js/script.js' %}"></script> -->
+    <!-- <img src="{% static 'game_app/images/ocean_sunset.jpg' %}" /> -->
+    <!-- adding another comment -->
+
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        table,
+        td,
+        th {
+            border: 1px solid black;
+        }
     </style>
 
 </head>
+
 <body>
+    <div class="container">
+        <p class="hello">Welcome {{template_name}}  {{template_lastname}}</p>
+        <p class=hellos> SERENITY NOW!!</p>
+        <a class="go_back" href="/logout">LogOut</a>
 
-<div class = "container">
-    <div class= "upper">
-        
-        {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-    </div>
+        <p class="click"><a href="/serenity_now/serenityStay"> End Game at Serenity Stay </a>
 
 
-    <div class = "text_left"> 
-       <div class="row">           
-           <div class="col-6">   
-               
-                <img src="{% static 'game_app/images/ocean_sunset.jpg' %}" />
 
-                <p><a href= "/serenity_now/serenityStay"> End Game at Serenity Stay   </a>    
+            <div class="stress">
+                <p class="level">1 = Not at all</p>
+                <p class="level">3 = Slightly</p>
+                <p class="level">5 = Getting irritated </p>
+                <p class="level">8 = Starting to loose it</p>
+                <p class="level">10 = Have totally lost it</p>
 
             </div>
-            
-       </div>
 
-        <div class="row">
-            <div class="col-6">
-
-                
-                    <h1>Welcome{{PLACEHOLDER}} : Serenity Now !</h1>
-                    <h4>stress level</h4>
-                <form action="processWelcome" method="POST" >
-                        {% csrf_token %}
-                    <select>
-                      <option value="1">Not at all</option>
-                      <option value="2">Slightly</option>
-                      <option value="3">Not too much</option>
-                      <option value="4">Sometimes</option>
-                      <option value="5">Most of the time</option>
-                      <option value="6">All days</option>
-                      <option value="5">My whole life</option>
-                    </select>
-
-                        <button type="submit">Start Gmame</button>
-                </form>
-                
-                
-                    <a href="/logout">LogOUT</a>
-                
-            </div>
-        </div>
-    </div>
-
+            <form action="processWelcome" method="POST">
+                {% csrf_token %}
+                <div class="rate">
+                    <p class="scale">Rate your current stress level: 0 = No Stress / 10 = So stressed you can't
+                        talk
+                    </p>
+                    <p class="slider">Drag the slider to display your stress level value</p>
+                    <p class="value">Current Stress Level: <span id="demo"></span></p>
+                    <div class="rangeslider">
+                        <form class="serenity" action="processWelcome" method="post">
+                            {% csrf_token %}
  
+                            <input type="range" min="1" max="10" value="1" class="myslider" id="sliderRange"
+                                name="range">
 
-</div>
+                                <br><br><br>
+                                <p class = "trigger">Please enter a few words describing the triggering event that caused your stress.</p>
+                                <textarea  class="text" rows = "6" columns = "50" name="journal"></textarea>
+                            <input class="submit_btn" type="submit" value="Start Game">
+                        </form>
+                    </div>
+                </div>
+
+                <!-- <a class="btn" href="processWelcome">Start Game</a> -->
 
 
+    </div>
 
+    <script>
+        var rangeslider = document.getElementById("sliderRange");
+        var output = document.getElementById("demo");
+        output.innerHTML = rangeslider.value;
 
+        rangeslider.oninput = function () {
+            output.innerHTML = this.value;
+        }
+    </script>
 
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
 </body>
+
 </html>

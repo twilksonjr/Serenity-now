@@ -4,18 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dashboard Serenity Now</title>
-    <!-- link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'game_app/css/style.css' %}">    
-    <style>
-        body{
-            background-image: url(https://images.pexels.com/photos/1888032/pexels-photo-1888032.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
-            background-size:1400px 800px;
-        }
-        
-    </style>
-</head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+{% load static %}
+<link rel="stylesheet" href="{% static 'game_app/css/style.css' %}">    
+<!-- <script src="{% static 'game_app/js/script.js' %}"></script> -->
+<!-- <img src="{% static 'game_app/images/image.jpg' %}" /> -->
 
+</head>
 <body>
 <div class = "container">
     <div class= "upper">
@@ -23,7 +18,7 @@
         {% if messages %}
         <ul class="messages">
             {% for message in messages %}
-            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
             {% endfor %}
         </ul>
         {% endif %}
@@ -33,12 +28,10 @@
     <div class = "text_left"> 
        <div class="row">           
            <div class="col-6">            
-                <h1>Welcome {{template_name}} {{template_lastname}} to Your Success Page !!</h1>
-                 
+                <h3>Welcome {{PLACEHOLDER}} HELP IS THIS WORKING??? to Your Success Page</h3>
+                <p><a href= "/serenity_now/serenityStay"> End Game at Serenity Stay   </a>    
                 
             </div>
-        
-                
 
             <div class="row">           
                 <div class="col-6">            
@@ -57,11 +50,7 @@
                 
                                 <input type="submit" value="Keep Playing Game">
                             </form>
-                        </div>
-                    </div>
-                </div>
-            </div>    
-            <p><a href= "/serenity_now/serenityStay"> End Game at Serenity Stay   </a>   
+            
        </div>
 
     </div>

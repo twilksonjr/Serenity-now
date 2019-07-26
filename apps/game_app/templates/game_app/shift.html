@@ -6,18 +6,128 @@
 <title>Serenity Breathe and Shift Page</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 {% load static %}
-<link rel="stylesheet" href="{% static 'game_app/css/style.css' %}">  
+<link rel="stylesheet" href="{% static 'game_app/css/style_shift.css' %}">  
 <!-- <script src="{% static 'game_app/js/script.js' %}"></script> -->
-<img src="{% static 'game_app/images/image.jpg' %}" />
+<!-- <img src="{% static 'game_app/images/ocean_sunset.jpg' %}" /> -->
 <script >src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"</script>
 </head>
 <body>
+
+<canvas id="canvas" width="400" height="400"
+style="background-color:yellow">
+</canvas>
+<script>
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        var radius = canvas.height / 2;
+        ctx.translate(radius, radius);
+        radius = radius * 0.90
+        setInterval(drawClock, 1000);
         
+        function drawClock() {
+          drawFace(ctx, radius);
+          drawNumbers(ctx, radius);
+          drawTime(ctx, radius);
+        }
+        
+        function drawFace(ctx, radius) {
+          var grad;
+          ctx.beginPath();
+          ctx.arc(0, 0, radius, 0, 2*Math.PI);
+          ctx.fillStyle = 'white';
+          ctx.fill();
+          grad = ctx.createRadialGradient(0,0,radius*0.95, 0,0,radius*1.05);
+          grad.addColorStop(0, '#333');
+          grad.addColorStop(0.5, 'white');
+          grad.addColorStop(1, '#333');
+          ctx.strokeStyle = grad;
+          ctx.lineWidth = radius*0.1;
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(0, 0, radius*0.1, 0, 2*Math.PI);
+          ctx.fillStyle = '#333';
+          ctx.fill();
+        }
+        
+        function drawNumbers(ctx, radius) {
+          var ang;
+          var num;
+          ctx.font = radius*0.15 + "px arial";
+          ctx.textBaseline="middle";
+          ctx.textAlign="center";
+          for(num = 1; num < 13; num++){
+            ang = num * Math.PI / 6;
+            ctx.rotate(ang);
+            ctx.translate(0, -radius*0.85);
+            ctx.rotate(-ang);
+            ctx.fillText(num.toString(), 0, 0);
+            ctx.rotate(ang);
+            ctx.translate(0, radius*0.85);
+            ctx.rotate(-ang);
+          }
+        }
+        
+        function drawTime(ctx, radius){
+            var now = new Date();
+            var hour = now.getHours();
+            var minute = now.getMinutes();
+            var second = now.getSeconds();
+            //hour
+            hour=hour%12;
+            hour=(hour*Math.PI/6)+
+            (minute*Math.PI/(6*60))+
+            (second*Math.PI/(360*60));
+            drawHand(ctx, hour, radius*0.5, radius*0.07);
+            //minute
+            minute=(minute*Math.PI/30)+(second*Math.PI/(30*60));
+            drawHand(ctx, minute, radius*0.8, radius*0.07);
+            // second
+            second=(second*Math.PI/30);
+            drawHand(ctx, second, radius*0.9, radius*0.02);
+        }
+        
+        function drawHand(ctx, pos, length, width) {
+            ctx.beginPath();
+            ctx.lineWidth = width;
+            ctx.lineCap = "round";
+            ctx.moveTo(0,0);
+            ctx.rotate(pos);
+            ctx.lineTo(0, -length);
+            ctx.stroke();
+            ctx.rotate(-pos);
+        }
+        </script>
+
+       <br> <br> 
+
+        <div class="firstClock">
+            <button type="button"
+            onclick="document.getElementById('demo').innerHTML = Date()">
+            Click me First to display Start Date and Time.
+            </button>
+            <p id="demo"></p>
+        </div>
+
+        <br> <br>
+        <div class="secondClock">
+            <button type="button"
+            onclick="document.getElementById('second').innerHTML = Date()">
+            Last Button.
+            </button>
+            <p id="second"></p>
+        </div>
+        
+              
 
 
 
-    <button>Start Count Down</button>
-    <div>Your Breathe and Shift ends in <span id="time"></span> minutes!</div>
+    <!-- <button>Start Count Down</button> -->
+    <div><h3>Your Breathe and Shift has begun! Click the "Click me First" button to display the start time.
+        Hover over Last Button and Close your eyes and count to 15. Then click.
+        Open your eyes and see how close you got!</h3></div>
+
+   
+    <!-- <div>Your Breathe and Shift ends in <span id="time"></span> minutes!</div> -->
 
 <div class = "container">
 
@@ -43,14 +153,14 @@
     <div class = "text_left"> 
        <div class="row">           
            <div class="col-6">            
-                <h3>Welcome {{PLACEHOLDER}}  to Your SerenityShift Breathe and Shift Page</h3>
+                <h3>Welcome {{name_template_first}} {{name_template_last}} to Your SerenityShift Breathe and Shift Page</h3>
                 <p><a href= "/serenity_now/serenityStay"> End Game at Serenity Stay   </a>    
   
             </div>
             <div class="row">           
                 <div class="col-6">            
         <h3>Please enter at least one thing in your life you are grateful for:</h3>
-                     <form action="taste" method="POST">
+                     <form action="processShift" method="POST">
                         {% csrf_token %}
                         <textarea name = "gratitudeList" rows="10" cols="50" ></textarea>
                         
@@ -80,7 +190,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 
     
     
-    <script>
+    <script class="firstClock">
             window.onload = function () {
                 console.log("hello")
                 var display = document.querySelector('#time'),
@@ -103,6 +213,30 @@
                 }
             };
         </script>
+
+<script class="secondClock">
+    window.onload = function () {
+        console.log("hello")
+        var display = document.querySelector('#time'),
+            timer = new CountDownTimer(5),
+            timeObj = CountDownTimer.parse(5);
+        console.log("TIMER:")
+        console.log(timer)
+        format(timeObj.minutes, timeObj.seconds);
+        
+        timer.onTick(format);
+        
+        document.querySelector('button').addEventListener('click', function () {
+            timer.start();
+        });
+        
+        function format(minutes, seconds) {
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+            display.textContent = minutes + ':' + seconds;
+        }
+    };
+</script>
     
 </body>
 

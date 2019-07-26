@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smell</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+{% load static %}
+<link rel="stylesheet" href="{% static 'game_app/css/style.css' %}">    
+<!-- <script src="{% static 'game_app/js/script.js' %}"></script> -->
+<!-- <img src="{% static 'game_app/images/image.jpg' %}" /> -->
+<style>
+        table {
+          border-collapse: collapse;
+        }
+        
+        table, td, th {
+          border: 1px solid black;
+        }
+        </style>
+</head>
+<body>
+<div class = "container">
+    <div class= "upper">
+        
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+
+
+    <div class = "text_left"> 
+       <div class="row">           
+           <div class="col-6">            
+                <h3>Welcome {{PLACEHOLDER}}  to Your SerenityShift Smell Page</h3>
+                <p><a href= "/serenity_now/serenityStay"> End Game at Serenity Stay   </a>    
+               
+            </div>
+
+            <!-- code to display the drop down menu for user to choose Taste -->
+            <div class="row">
+                <div class="col-6">
+                    <h1>Welcome{{PLACEHOLDER}},Let's answer the smell question now!</h1>
+    
+                    <h2>Imagine what you want to smell</h2>
+                    <form action="processSmell" method="POST"><br>
+                            {% csrf_token %}
+                        <input type="radio" name="suds" value="1" >Smooth<br>
+                        <input type="radio" name="suds" value="2" >Silky<br>
+                        <input type="radio" name="suds" value="3" >Fluffy<br>
+                        <input type="radio" name="suds" value="4" >Soft<br>
+                        <input type="radio" name="suds" value="4" >Frathery<br>
+                        <input type="submit" value="submit">
+                    </form>
+                
+                    
+                
+                        <a href="/logout">LogOUT</a>
+                
+
+
+                </div>
+
+
+            </div>
+
+ 
+
+</div>
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>    
+</body>
+</html>

@@ -4,43 +4,47 @@
 }
 
 .container {
-  border: 1px solid black;
   width: 970px;
 }
 
+body {
+  background-image: url('calm.jpg') !important;
+}
+
 .travel {
-  font-size: 35px;
-  margin-left: 96px;
-  margin-top: -14px;
+  font-size: 50px;
+  margin-left: 405px;
+  margin-top: -26px;
+  opacity: 1.5;
+  color: white;
 }
 
 .registration {
-  width: 300px;
+  width: 333px;
   display: inline-block;
-  margin-left: 100px;
-  margin-top: 5px;
+  margin-left: 44px;
+  margin-top: 20px;
   background-color: lightskyblue;
-  border: 1px solid black;
+  opacity: 0.8;
+  /* border: 1px solid black; */
   text-align: center;
+  font-size: 18px;
 }
 
 .login {
   width: 344px;
   height: 416px;
   display: inline-block;
-  margin-left: 60px;
+  margin-left: 49px;
   background-color: lightskyblue;
-  border: 1px solid black;
+  opacity: 0.8;
+  /* border: 1px solid black; */
   text-align: center;
   vertical-align: top;
-  margin-top: 5px;
+  margin-top: 20px;
+  font-size: 18px;
 }
 
 .footer {
-  width: 970px;
-  height: 40px;
-  border: 1px solid black;
-  background-color: lightgray;
-  margin-top: 39px;
-  margin-left: -11px
+  margin-left: 34px;
 }

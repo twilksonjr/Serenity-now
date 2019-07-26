@@ -1,0 +1,22 @@
+* {
+    margin: 0px;
+    padding: 10px;
+  }
+
+
+body {
+    background-image: url('ocean_sunset.jpg') !important;
+    background-size: 1600px;
+    height: 970px;
+    width: 970px;
+    color: greenyellow
+  }
+
+  # demo{
+  font-size: 20px;
+  color: rgb(229, 255, 0);  
+  }
+  # second{
+    font-size: 20px;
+    color: red;  
+    }

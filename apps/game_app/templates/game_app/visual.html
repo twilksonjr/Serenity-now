@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Visual Page for Serenity Now Game</title>
+    <style>
+        table {
+          border-collapse: collapse;
+        }
+        
+        table, td, th {
+          border: 1px solid black;
+        }
+        body{
+          background-image: url("https://image.freepik.com/free-photo/_1417-1159.jpg");
+          background-size: 1400px 800px;
+        
+        }
+       
+      
+        </style>
+</head>
+<body>
+    <h1>How are you feeling?</h1>
+    <div class="image">
+      <img>
+      <img src="https://emojis.wiki/emoji-pics/facebook/loudly-crying-face-facebook.png" alt="cryingggg" width="200" height="200">
+      <img src="https://cdn.shopify.com/s/files/1/1061/1924/products/Smiling_Face_Emoji_large.png?v=1480481056" alt="smile" width="200" height="200">
+      <img src="https://cdn.shopify.com/s/files/1/1061/1924/products/Super_Angry_Face_Emoji_ios10_large.png?v=1542436021"alt="angry" width="200" height="200">
+      <img src="http://cdn.shopify.com/s/files/1/1061/1924/products/Kiss_Emoji_Icon_2_grande.png?v=1542435998"alt="heart" width="200" height="200">
+      <img src="https://cdn.shopify.com/s/files/1/1061/1924/products/Sad_Face_Emoji_large.png?v=1480481055" alt="unhappy" width="200" height="200">
+    </div>
+    <form  action="processVisual" method="POST">
+      {% csrf_token %}
+      <p>Please select your feeling:</p>
+        <input type="radio" name="subs" value="1"> Crying<br>
+        <input type="radio" name="subs" value="2"> Happy<br>
+        <input type="radio" name="subs" value="3"> Angry<br>  
+        <input type="radio" name="subs" value="4"> Awesome<br>  
+        <input type="radio" name="subs" value="5"> Not really happy<br>  
+        
+        <input type="submit" value="submit">
+</form>
+
+<!-- <form action = "processVisual" id = "visual_form" method="POST" >
+  {% csrf_token %} 
+ 
+    <input type="submit" value="submit">
+  
+  </form>   
+  <select name="visualList" form="visual_form">
+          <option name="visual" value="1">Crying</option>
+          <option name ="visual"value="2">Happy</option>
+          <option name="visual" value="3">Angry</option>
+          <option name="visual" value="4">Awesome</option>
+          <option name="visual" value="5">Not Really Happy</option>
+
+        </select> -->
+          
+</body>
+
+<p><a href= "/serenity_now/serenityStay"> End Game at Serenity Stay   </a>   </p>
+</html> 
